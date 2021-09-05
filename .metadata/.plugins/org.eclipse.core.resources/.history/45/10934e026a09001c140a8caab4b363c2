@@ -1,0 +1,149 @@
+package web;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import DAO.SinhVienDAO;
+import entity.SinhVien;
+
+/**
+ * Servlet implementation class UserServlet
+ */
+@WebServlet("/load")
+public class UserServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+    private SinhVienDAO dao;
+    
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public UserServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+        this.dao = new SinhVienDAO();
+        
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		String action = request.getServletPath();
+		
+		switch (action) {
+		case "/add": {
+			addSV(request, response);
+			break;
+		}
+		case "/update": {
+			updateSV(request, response);
+			break;
+		}
+		case "/delete": {
+			delSV(request, response);
+			break;
+		}
+		default:
+			listSinhVien(request, response);
+		}
+	}
+	
+	private void addSV(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try {
+			String idSV = request.getParameter("txt_idSV");
+			String nameSV = request.getParameter("txt_nameSV");
+			String idKN = request.getParameter("idKN");
+			String cccd = request.getParameter("txt_cccd");
+			String pn = request.getParameter("txt_phoneNum");
+			String mail = request.getParameter("txt_mail");
+			
+			SinhVien sv = new SinhVien(idSV, nameSV, idKN, cccd, pn, mail);
+			if (sv != null) {
+				dao = new SinhVienDAO();
+				dao.add(sv);
+				response.sendRedirect("list");
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			
+			e.printStackTrace();
+		}
+	}
+	
+	private void updateSV(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try {
+			String idSV = request.getParameter("txt_idSV");
+			String nameSV = request.getParameter("txt_nameSV");
+			String idKN = request.getParameter("idKN");
+			String cccd = request.getParameter("txt_cccd");
+			String pn = request.getParameter("txt_phoneNum");
+			String mail = request.getParameter("txt_mail");
+			
+			SinhVien sv = new SinhVien(idSV, nameSV, idKN, cccd, pn, mail);
+			if (sv != null) {
+				dao = new SinhVienDAO();
+				dao.update(sv);
+				response.sendRedirect("list");
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			
+			e.printStackTrace();
+		}
+	}
+	
+	private void delSV(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try {
+			String idSV = request.getParameter("txt_idSV");
+			
+			if (idSV != null) {
+				dao = new SinhVienDAO();
+				dao.delete(idSV);
+				response.sendRedirect("list");
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			
+			e.printStackTrace();
+		}
+	}
+
+	private void listSinhVien(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+		List<SinhVien> listSV = new ArrayList<>();
+		listSV = dao.getAllSV();
+		request.setAttribute("listSV", listSV);
+		RequestDispatcher rd = request.getRequestDispatcher("displaySinhVien.jsp");
+		rd.forward(request, response);
+	}
+	
+	private void showAddSinhVien(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
+		RequestDispatcher rd = request.getRequestDispatcher("FormAdd.jsp");
+		rd.forward(request, response);
+	}
+	
+	private void showEditForm(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
+		String idSV = request.getParameter("txt_idSV");
+		SinhVien sv = new SinhVien();
+		sv = dao.getSVByID(idSV);
+		RequestDispatcher rd = request.getRequestDispatcher("FormAdd.jsp");
+		request.setAttribute("sinhVien", sv);
+		rd.forward(request, response);
+	}
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}

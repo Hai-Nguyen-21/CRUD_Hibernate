@@ -1,0 +1,41 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Quản Lý Sinh Viên 1</title>
+</head>
+<body>
+	<div class="container">
+		<h2>List Sinh Viên</h2>
+		<br>
+		<table>
+			<thead>
+				<tr>
+					<th>ID SinhVien</th>
+					<th>Name SinhVien</th>
+					<th>ID KhoaNganh</th>
+					<th>CCCD</th>
+					<th>Phone Number</th>
+					<th>Email</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="o" items="${LIST_SINHVIEN}">
+					<tr>
+						<td>${o.idSV}</td>
+						<td>${o.nameSV}</td>
+						<td>${o.idKN}</td>
+						<td>${o.CCCD}</td>
+						<td>${o.phoneNum}</td>
+						<td>${o.mail}</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</div>
+
+</body>
+</html>

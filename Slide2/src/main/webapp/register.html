@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Register</title>
+</head>
+<body>
+	<h1>Register</h1>
+	<hr>
+	<form action="RegisterServlet" method = "post">
+		UserName: <input type = "text" name = "userName" /> <br>
+		Hobies: <input type = "checkbox" name = "hobies" value = "Music"/> Music
+				<input type = "checkbox" name = "hobies" value = "Reading"/> Reading
+				<input type = "checkbox" name = "hobies" value = "Dance"/> Dance
+				<input type = "checkbox" name = "hobies" value = "Shopping"/> Shopping
+				<br>
+		Country: <select name = "Country">
+					<option value = "Việt Name"> Việt Nam</option>
+					<option value = "USA"> USA</option>
+					<option value = "Spanish"> Spanish</option>
+					<option value = "Thái Lan"> Thái Lan</option>
+				</select>
+				<br>
+		<button>Submit</button>
+	</form>
+</body>
+</html>

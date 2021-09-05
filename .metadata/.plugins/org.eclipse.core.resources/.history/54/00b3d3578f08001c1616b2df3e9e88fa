@@ -1,0 +1,24 @@
+<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<jsp:useBean id="o" class="DAO.SinhVienDAO" scope = "request"></jsp:useBean>
+<meta charset="ISO-8859-1">
+<title>Quản Lý Sinh Viên 1</title>
+</head>
+<body>
+	<table>
+		<tr>
+			<th>ID SinhVien</th>
+			<th>Name SinhVien</th>
+			<th>ID KhoaNganh</th>
+			<th>CCCD</th>
+			<th>Phone Number</th>
+			<th>Email</th>
+		</tr>
+		<%= ForEach %>
+	</table>
+</body>
+</html>

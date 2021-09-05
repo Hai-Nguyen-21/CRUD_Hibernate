@@ -1,0 +1,5 @@
+#Tomcat publish data
+#Sun Sep 05 14:11:07 ICT 2021
+org.eclipse.jst.jee.server\:/binary\:C\:\\Users\\admin\\.m2\\repository\\org\\apache\\tomcat\\tomcat-jasper\\8.5.70\\tomcat-jasper-8.5.70.jar=WEB-INF/lib/tomcat-jasper-8.5.70.jar
+org.eclipse.jst.jee.server\:/binary\:C\:\\Users\\admin\\.m2\\repository\\org\\apache\\tomcat\\tomcat-websocket\\8.5.70\\tomcat-websocket-8.5.70.jar=WEB-INF/lib/tomcat-websocket-8.5.70.jar
+org.eclipse.jst.jee.server\:/binary\:C\:\\Users\\admin\\.m2\\repository\\org\\apache\\tomcat\\tomcat-jasper-el\\8.5.70\\tomcat-jasper-el-8.5.70.jar=WEB-INF/lib/tomcat-jasper-el-8.5.70.jar
